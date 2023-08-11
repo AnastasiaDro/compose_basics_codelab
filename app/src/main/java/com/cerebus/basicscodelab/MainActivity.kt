@@ -1,5 +1,6 @@
 package com.cerebus.basicscodelab
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,6 +30,7 @@ import com.cerebus.basicscodelab.ui.theme.BasicsCodelabTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +69,11 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp)) //there is a crash if using it without coerceAtLeast
             ) {
                 Text(text = "Hello, ")
-                Text(text = name)
+                // Sometimes you need to deviate slightly from the selection of colors and font styles.
+                // In those situations it's better to base your color or style on an existing one.
+                Text(text = name, style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.ExtraBold
+                ))
             }
             ElevatedButton(onClick = { expanded = !expanded }, modifier = Modifier.weight(1f)) {
                 Text(if (expanded) "Show less" else "Show more")
@@ -112,9 +118,15 @@ fun Greetings(
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "Dark"
+)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
-fun GreetingsPreview() {
+fun DefaultPreview() {
     BasicsCodelabTheme {
         Greetings()
     }
