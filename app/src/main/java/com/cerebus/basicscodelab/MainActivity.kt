@@ -172,7 +172,7 @@ fun OnboardingScreen(modifier: Modifier = Modifier, onContinueClicked: () -> Uni
             modifier = Modifier.padding(vertical = 24.dp),
             onClick =  onContinueClicked
         ) {
-            Text(text = "Continue")
+            Text(text = stringResource(R.string.continue1))
         }
     }
 }
